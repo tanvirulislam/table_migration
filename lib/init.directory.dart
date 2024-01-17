@@ -1,11 +1,8 @@
 import 'package:path_provider/path_provider.dart';
-
 import 'dart:io';
-
 import 'package:path/path.dart';
 
 late final Directory deviceDirectory;
-
 const dbFileName = 'testdb.db';
 final dbFilePath = join(deviceDirectory.path, dbFileName);
 
@@ -22,7 +19,7 @@ Future<Directory> _getDirectory() async {
     directory = await getApplicationDocumentsDirectory();
   } else {
     directory = await getApplicationSupportDirectory();
-    print(directory.path);
+    // print(directory.path);
   }
   return directory;
 }

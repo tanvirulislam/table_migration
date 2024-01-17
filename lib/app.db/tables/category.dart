@@ -13,3 +13,9 @@ class CategoryTable extends Table {
     return appDb.into(appDb.categoryTable).insert(entry);
   }
 }
+
+class ProductTable extends Table {
+  IntColumn get sl => integer().autoIncrement().nullable()();
+  TextColumn get id => text().nullable()();
+  TextColumn get name => text().nullable()();
+}
