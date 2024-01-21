@@ -1,15 +1,14 @@
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:testdb/app.db/app.db.dart';
 import 'package:testdb/const.dart';
 
-class DataView extends ConsumerWidget {
+class DataView extends StatelessWidget {
   const DataView(this.data, {super.key});
   final List<QueryRow> data;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: data.length,
@@ -29,19 +28,16 @@ class DataView extends ConsumerWidget {
                   Text("${itemData['id']}"),
                   Text("${itemData['name']}"),
                   SizedBox(
-                    // height: 30,
                     width: 100,
                     child: TextFormField(
-                      // controller: controller,
                       onChanged: (value) async {
-                        print(value);
                         appDb.updateNameById(
                           tableName,
                           data[index].data['id'],
                           value,
                         );
                       },
-                      // initialValue: "${itemData['name']}",
+                      initialValue: "${itemData['name']}",
                       decoration: inputDecoration,
                     ),
                   ),

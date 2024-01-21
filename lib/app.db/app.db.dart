@@ -44,7 +44,7 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> updateNameById(String tableName, int id, String newName) async {
     await customUpdate("UPDATE $tableName SET name = :newName WHERE id = :id",
-        variables: [Variable.withInt(id), Variable.withString(newName)]);
+        variables: [Variable.withString(newName), Variable.withInt(id)]);
   }
 
   @override
