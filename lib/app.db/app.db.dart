@@ -15,9 +15,9 @@ late AppDatabase appDb;
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
-  Future<void> deleteTable() async {
-    await appDb.customStatement("DROP TABLE category_table");
-  }
+  // Future<void> deleteTable() async {
+  //   await appDb.customStatement("DROP TABLE category_table");
+  // }
 
   Future<void> createTable(String tableName) async {
     await appDb.customStatement(""" CREATE TABLE $tableName (
@@ -27,13 +27,17 @@ class AppDatabase extends _$AppDatabase {
  """);
   }
 
+  Future<void> deleteTable(String tableName) async {
+    await appDb.customStatement("DROP TABLE IF EXISTS $tableName;");
+  }
+
   Future<void> insertData(String tableName, int id, String name) async {
     await appDb.customStatement(
       "INSERT INTO $tableName (id, name) VALUES ($id, '$name');",
     );
   }
 
-  Future<List<QueryRow>> getAllData(String tableName) async {
+  Future<List<QueryRow>> getAllUsers(String tableName) async {
     return await customSelect("SELECT * FROM $tableName;").get();
   }
 
